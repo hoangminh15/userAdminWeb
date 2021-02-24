@@ -8,7 +8,7 @@ function App() {
     <BrowserRouter>
         <Route exact path="/" component={AddEmployee} />
         <Route exact path="/view" component={SimpleTable} />
-      </BrowserRouter>
+    </BrowserRouter>
   );
 }
 

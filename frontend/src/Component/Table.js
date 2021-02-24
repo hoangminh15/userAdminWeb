@@ -51,7 +51,7 @@ export default function SimpleTable() {
   let isLoading = true;
 
   async function sampleFunc() {
-    let response = await fetch("/api/employee");
+    let response = await fetch("/user");
     let body = await response.json();
     upDateData(body);
   }
@@ -69,7 +69,7 @@ export default function SimpleTable() {
         <GroupIcon />
       </Avatar>
       <Typography component="h1" variant="h5">
-        Employee Directory
+        User Directory
       </Typography>
 
       {isLoading ? (
@@ -82,19 +82,19 @@ export default function SimpleTable() {
           <Table className={classes.table} aria-label="simple table">
             <TableHead>
               <TableRow>
+                <TableCell align="center">Id</TableCell>
                 <TableCell align="center">Name</TableCell>
-                <TableCell align="center">Department</TableCell>
-                <TableCell align="center">Gender</TableCell>
                 <TableCell align="center">Dob</TableCell>
+                <TableCell align="center">Gender</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {data?.map(row => (
-                <TableRow key={row.name}>
+                <TableRow key={row.id}>
+                  <TableCell align="center">{row.id}</TableCell>
                   <TableCell align="center">{row.name}</TableCell>
-                  <TableCell align="center">{row.department}</TableCell>
-                  <TableCell align="center">{row.gender}</TableCell>
                   <TableCell align="center">{row.dob}</TableCell>
+                  <TableCell align="center">{row.gender}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

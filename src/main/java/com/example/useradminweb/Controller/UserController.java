@@ -20,15 +20,16 @@ public class UserController {
         return userService.get();
     }
 
+    @GetMapping("/user/{id}")
+    public User get(@PathVariable int id){
+        return userService.get(id);
+    }
+
+    //Admin
     @PostMapping("/user")
     public User save(@RequestBody User user){
         userService.save(user);
         return user;
-    }
-
-    @GetMapping("/user/{id}")
-    public User get(@PathVariable int id){
-        return userService.get(id);
     }
 
     @DeleteMapping("/user/{id}")

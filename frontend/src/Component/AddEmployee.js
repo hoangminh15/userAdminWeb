@@ -43,18 +43,18 @@ export default function AddEmployee() {
     new Date("1998-04-02T21:11:54")
   );
   const [name, setName] = React.useState("");
-  const [department, setDepartment] = React.useState("");
+  const [id, setId] = React.useState("");
   const [gender, setGender] = React.useState("");
 
   const handleDateChange = date => setSelectedDate(date.target.value);
   const handleNameChange = event => setName(event.target.value);
-  const handlDepartmentChange = event => setDepartment(event.target.value);
+  const handlIdChange = event => setId(event.target.value);
   const handleGenderChange = event => setGender(event.target.value);
 
   const [message, setMessage] = React.useState("Nothing saved in the session");
 
   async function sampleFunc(toInput) {
-    const response = await fetch("/api/employee", {
+    const response = await fetch("/user", {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       mode: "cors", // no-cors, *cors, same-origin
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -73,10 +73,10 @@ export default function AddEmployee() {
   }
 
   const handleSubmit = variables => {
-    const toInput = { name, department, gender, dob: selectedDate };
+    const toInput = { name, id, gender, dob: selectedDate };
     sampleFunc(toInput);
     setName("");
-    setDepartment("");
+    setId("");
     setGender("");
   };
 
@@ -112,15 +112,15 @@ export default function AddEmployee() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                autoComplete="department"
-                name="department"
+                autoComplete="id"
+                name="id"
                 variant="outlined"
                 required
                 fullWidth
-                value={department}
-                id="department"
-                label="Department"
-                onChange={handlDepartmentChange}
+                value={id}
+                id="id"
+                label="ID"
+                onChange={handlIdChange}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
