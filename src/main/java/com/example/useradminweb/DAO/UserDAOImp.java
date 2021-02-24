@@ -13,34 +13,28 @@ import java.util.List;
 public class UserDAOImp implements UserDAO {
 
     @Autowired
-    private EntityManager entityManager;
+    private UserRepo userRepo;
 
     @Override
     public List<User> get() {
-        Session currentSession = entityManager.unwrap(Session.class);
-        Query<User> query = currentSession.createQuery("from User", User.class);
-        List<User> list = query.getResultList();
-        return list;
+        List<User> userList = (List<User>) userRepo.findAll();
+        return userList;
     }
 
     @Override
     public User get(int id) {
-        Session currentSession = entityManager.unwrap(Session.class);
-        User user = currentSession.get(User.class, id);
+        User user = userRepo.findById(id).orElse(null);
         return user;
     }
 
     @Override
     public void save(User user) {
-        Session currSession = entityManager.unwrap(Session.class);
-        currSession.saveOrUpdate(user);
+        userRepo.save(user);
     }
 
     @Override
     public void delete(int id) {
-        Session currSession = entityManager.unwrap(Session.class);
-        User emp = currSession.get(User.class, id);
-        currSession.delete(emp);
+        userRepo.deleteById(id);
     }
 
 }

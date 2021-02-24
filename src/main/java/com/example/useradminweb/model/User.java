@@ -1,5 +1,7 @@
 package com.example.useradminweb.model;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -9,12 +11,16 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private Integer id;
+    @NotNull
+    private int id;
     @Column
+    @NotNull
     private String name;
     @Column
+    @NotNull
     private Date dob;
     @Column
+    @NotNull
     private String gender;
 
     @Override
@@ -27,11 +33,11 @@ public class User {
                 '}';
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
