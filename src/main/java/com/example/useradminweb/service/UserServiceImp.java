@@ -17,7 +17,7 @@ public class UserServiceImp implements UserService{
     @Transactional
     @Override
     public List<User> get() {
-        return null;
+        return userDAO.get();
     }
 
     @Transactional
