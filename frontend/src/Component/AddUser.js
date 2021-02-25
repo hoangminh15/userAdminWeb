@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -10,48 +10,55 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(7),
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(3),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2)
+    margin: theme.spacing(3, 0, 2),
   },
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: "100%"
-  }
+    width: "100%",
+  },
 }));
 
-export default function AddEmployee() {
+export default function AddUser() {
   const classes = useStyles();
-  const [firstLoad, setLoad] = React.useState(true);
+  const [firstLoad, setLoad] = useState(true);
 
-  const [selectedDate, setSelectedDate] = React.useState(
+  //User info
+  const [selectedDate, setSelectedDate] = useState(
     new Date("1998-04-02T21:11:54")
   );
-  const [name, setName] = React.useState("");
-  const [id, setId] = React.useState("");
-  const [gender, setGender] = React.useState("");
+  const [name, setName] = useState("");
+  const [id, setId] = useState("");
+  const [gender, setGender] = useState("");
+  //User Account
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleDateChange = date => setSelectedDate(date.target.value);
-  const handleNameChange = event => setName(event.target.value);
-  const handlIdChange = event => setId(event.target.value);
-  const handleGenderChange = event => setGender(event.target.value);
+  const handleUsernameChange = (event) => setUsername(event.target.value);
+  const handlePasswordChange = (event) => setPassword(event.target.handle);
 
-  const [message, setMessage] = React.useState("Nothing saved in the session");
+  const handleDateChange = (date) => setSelectedDate(date.target.value);
+  const handleNameChange = (event) => setName(event.target.value);
+  const handlIdChange = (event) => setId(event.target.value);
+  const handleGenderChange = (event) => setGender(event.target.value);
+
+  const [message, setMessage] = useState("Nothing saved in the session");
 
   async function sampleFunc(toInput) {
     const response = await fetch("/user", {
@@ -60,21 +67,23 @@ export default function AddEmployee() {
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
       credentials: "same-origin", // include, *same-origin, omit
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       redirect: "follow", // manual, *follow, error
       referrerPolicy: "no-referrer", // no-referrer, *client
-      body: JSON.stringify(toInput) // body data type must match "Content-Type" header
+      body: JSON.stringify(toInput), // body data type must match "Content-Type" header
     });
     let body = await response.json();
     console.log(body.id);
     setMessage(body.id ? "Data sucessfully updated" : "Data updation failed");
   }
 
-  const handleSubmit = variables => {
+  const handleSubmit = (variables) => {
     const toInput = { name, id, gender, dob: selectedDate };
     sampleFunc(toInput);
+    setUsername("");
+    setPassword('');
     setName("");
     setId("");
     setGender("");
@@ -93,10 +102,36 @@ export default function AddEmployee() {
           <GroupIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Employee Directory
+          User Directory
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="username"
+                value={username}
+                label="Username"
+                name="username"
+                autoComplete="username"
+                onChange={handleUsernameChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="password"
+                value={password}
+                label="Password"
+                name="password"
+                autoComplete="password"
+                onChange={handlePasswordChange}
+              />
+            </Grid>
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -144,7 +179,7 @@ export default function AddEmployee() {
                 defaultValue="1998-04-02"
                 className={classes.textField}
                 InputLabelProps={{
-                  shrink: true
+                  shrink: true,
                 }}
                 onChange={handleDateChange}
               />
@@ -164,7 +199,7 @@ export default function AddEmployee() {
 
           <Grid container justify="center">
             <Grid item>
-              <Link to="/view">View Employee Records</Link>
+              <Link to="/view">View User Records</Link>
             </Grid>
           </Grid>
         </form>

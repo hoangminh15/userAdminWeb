@@ -1,0 +1,20 @@
+.find__user__combobox{
+    height: 30px;
+}
+
+.table__row:hover {
+    background-color: rgb(228,230,235);
+}
+
+label {
+    font-size: 18px;
+}
+
+select {
+    font-size: 16px;
+}
+
+select > option {
+    height: 30px;
+    font-size: 15px;
+}
