@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -50,7 +50,7 @@ export default function SimpleTable() {
   const [firstLoad, setLoad] = useState(true);
   const [showUserDetail, setShowUserDetail] = useState(false);
   const [userDetail, setUserDetail] = useState();
-  const [choosenField, setChoosenField] = useState("name");
+  const [choosenField, setChoosenField] = useState("all");
   let isLoading = true;
 
   async function handleSubmit(input, event) {
@@ -72,6 +72,7 @@ export default function SimpleTable() {
   async function sampleFunc() {
     let response = await fetch("/user");
     let body = await response.json();
+    console.log(body);
     upDateData(body);
   }
 
@@ -141,6 +142,11 @@ export default function SimpleTable() {
           </Table>
         </TableContainer>
       )}
+      {/* Create a list of buttons for pagination*/}
+      <div className="button__list">
+        
+      </div>
+
       <Link className={classes.link} to="/">
         {" "}
         <Typography align="left">
