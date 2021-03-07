@@ -17,7 +17,7 @@ public class UserDAOImp implements UserDAO {
 
     @Override
     public List<User> get() {
-        List<User> userList = (List<User>) userRepo.findAll();
+        List<User> userList = userRepo.findAll();
         return userList;
     }
 

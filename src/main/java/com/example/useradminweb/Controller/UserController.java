@@ -74,10 +74,10 @@ public class UserController {
         return list;
     }
 
-    @GetMapping("/user/page")
+    @GetMapping("/user/totalPages")
     Integer getNumberOfUsers(@RequestParam(defaultValue = "0") Integer pageNo,
                              @RequestParam(defaultValue = "4") Integer pageSize){
         Page<User> page = userRepo.findAll(PageRequest.of(pageNo, pageSize));
-        return page.getNumberOfElements();
+        return page.getTotalPages();
     }
 }

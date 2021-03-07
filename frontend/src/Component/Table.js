@@ -13,6 +13,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import UserDetail from "./UserDetail";
 import SearchBar from "./SearchBar";
 import "./Table.css";
+import LoginForm from "./LoginForm";
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -96,6 +97,7 @@ export default function SimpleTable() {
 
   return (
     <div className={classes.paper}>
+      {/* <LoginForm /> */}
       <div className="find__user__combobox">
         <label>Find user by: </label>
         <select value={choosenField} onChange={handleChoosenFieldChange}>
