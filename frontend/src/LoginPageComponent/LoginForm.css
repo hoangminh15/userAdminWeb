@@ -1,0 +1,171 @@
+.login__form {
+  background-color: white;
+  height: 540px;
+  width: 432px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.login__form > header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 10px;
+  padding-top: 8px;
+  border-bottom: 1px #ccd0d5 solid;
+}
+
+header > h2 {
+  font-weight: 600;
+  font-style: normal;
+  font-size: 25px;
+  color: #1c1e21;
+  line-height: 32px;
+}
+
+header > p {
+  font-size: 15px;
+  font-weight: 400px;
+  line-height: 24px;
+  color: #606770;
+}
+
+.text__input input, .gender__choice {
+  border-width: 1px !important;
+  border-color: #CCD0D5 !important;
+  border-style: solid !important; 
+  border-radius: 5px;
+  padding-left: 12px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+}
+
+input::-webkit-input-placeholder {
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.form {
+  margin-top: 16px;
+}
+
+.name {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 5px;
+}
+
+.full__width__input {
+  margin-left: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 386px;
+}
+
+.dob__text, .gender__text {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  color: #606770;
+  margin-top: 3px;
+  margin-left: 15px;
+}
+
+.icon__question {
+  padding: 0 !important;
+  transform: scale(0.6);
+}
+
+.dob__form {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.input__date {
+  width: 125px !important;
+
+}
+
+.MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] {
+  padding: 0px !important;
+}
+
+.radio__group {
+  flex-direction: row !important;
+}
+
+.gender {
+  margin-top: 5px;
+}
+
+.gender__text {
+  margin-top: 5px;
+}
+
+.gender__input {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.gender__choice {
+  display: flex;
+  align-items: center;
+  width: 113px;
+  position: relative;
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+
+.gender__choice > label {
+  font-size: 15px;
+  font-weight: 400;
+  padding-right: 28px;
+  color: #1c1e21;
+}
+
+.gender__choice > input {
+  position: absolute;
+  right: 10px;
+}
+
+.last__part {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.term__condition { 
+  width: 390px;
+  font-size: 11px;
+  font-weight: 400;
+  color: #777777;
+  line-height: 15px;
+  margin-bottom: 10px;
+}
+
+.term__condition span {
+  color: #385898;
+
+}
+
+.submit__button {
+  background-color: #00a400;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 18px;
+  padding: 7px 32px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: bold ;
+  min-width: 194px;
+}
+
+.have__account {
+  margin-top: 10px;
+  font-size: 17px;
+  font-weight: 400;
+  color: #1877f2;
+  text-decoration: none;
+  margin-bottom: 0;
+}

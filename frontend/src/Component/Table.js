@@ -13,7 +13,6 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import UserDetail from "./UserDetail";
 import SearchBar from "./SearchBar";
 import "./Table.css";
-import LoginForm from "./LoginForm";
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -55,12 +54,12 @@ export default function SimpleTable() {
   let isLoading = true;
 
   async function handleSubmit(input, event) {
-    let url = '/user/' + choosenField + "/" + input;
+    let url = "/user/" + choosenField + "/" + input;
     let response = await fetch(url);
     let body = await response.json();
     console.log(body);
     upDateData(body);
-  };
+  }
 
   const handleChoosenFieldChange = (event) => {
     const newChoosenField = event.target.value;
@@ -71,10 +70,27 @@ export default function SimpleTable() {
   };
 
   async function sampleFunc() {
-    let response = await fetch("/user");
-    let body = await response.json();
-    console.log(body);
-    upDateData(body);
+    var myHeaders = new Headers();
+    console.log(localStorage.getItem("accessToken"));
+    myHeaders.append(
+      "Authorization",
+      localStorage.getItem("accessToken")
+    );
+    myHeaders.append("Content-Type", "application/json");
+
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch("/user", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        upDateData(result);
+      })
+      .catch((error) => console.log("error", error));
   }
 
   const popUpUserDetail = (userDetail) => {
@@ -83,9 +99,27 @@ export default function SimpleTable() {
   };
 
   async function handleDoubleClick(id, event) {
-    let response = await fetch("/user/" + id);
-    let body = await response.json();
-    popUpUserDetail(body);
+    var myHeaders = new Headers();
+    console.log(localStorage.getItem("accessToken"));
+    myHeaders.append(
+      "Authorization",
+      localStorage.getItem("accessToken")
+    );
+    myHeaders.append("Content-Type", "application/json");
+
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch("/user/id/" + id, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        popUpUserDetail(result);
+      });
+    
   }
 
   if (firstLoad) {
@@ -145,9 +179,7 @@ export default function SimpleTable() {
         </TableContainer>
       )}
       {/* Create a list of buttons for pagination*/}
-      <div className="button__list">
-        
-      </div>
+      <div className="button__list"></div>
 
       <Link className={classes.link} to="/">
         {" "}
