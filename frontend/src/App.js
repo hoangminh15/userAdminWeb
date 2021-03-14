@@ -8,28 +8,34 @@ import Main from "./LoginPageComponent/Main";
 import UserPage from "./UserPage";
 import Table from "./Component/Table";
 import LoginPage from "./LoginPage";
+import { ProvideAuth } from "./AuthComponent/Auth";
+import PrivateRoute from "./AuthComponent/PrivateRoute";
+import AuthButton from "./AuthComponent/AuthButton";
 
 function App() {
   return (
-    <Router>
-      <div className="app">
-        <Switch >
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/user">
-            <UserPage />
-            <Table />
-          </Route>
-          <Route path="/admin">
-            <AdminPage />
-          </Route>
-          <Route path="/login">
-            <LoginPage />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <ProvideAuth>
+      <Router>
+        <div className="app">
+          <AuthButton />
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/user">
+              <UserPage />
+              <Table />
+            </Route>
+            <PrivateRoute path="/admin">
+              <AdminPage />
+            </PrivateRoute>
+            <Route path="/login">
+              <LoginPage />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </ProvideAuth>
   );
 }
 

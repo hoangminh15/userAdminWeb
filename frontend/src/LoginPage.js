@@ -1,11 +1,15 @@
 import React, { useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import Main from "./LoginPageComponent/Main";
+import { useAuth } from './AuthComponent/Auth';
+import { RemoveFromQueue } from "@material-ui/icons";
 
 function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
+    //Fetch user infomation
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -34,7 +38,23 @@ function LoginPage() {
         console.log("error", error);
         alert("Username, password are wrong");
       });
+
+      //Handle Auth
+      login();
   };
+
+  //Auth stuff
+  let history = useHistory();
+  let location = useLocation();
+  let auth = useAuth();
+
+  let { from } = location.state || { from: {pathname: "/"}};
+  let login = () => {
+    auth.signin(() => {
+      history.replace(from);
+    })
+  };
+  
 
   return (
     <div className="login__page">
